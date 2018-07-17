@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import HikeListContainer from './HikeListContainer';
 
 class App extends Component {
   render() {
@@ -10,6 +11,7 @@ class App extends Component {
         <p className="App-intro">
           Find a sweet spot on Mt Hood
         </p>
+        <HikeListContainer />
       </div>
     );
   }
