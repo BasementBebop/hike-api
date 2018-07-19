@@ -11,6 +11,7 @@ class App extends Component {
         <p className="App-intro">
           Find a sweet spot on Mt Hood
         </p>
+        <h1>All them sweet hikes:</h1>
         <HikeListContainer />
       </div>
     );

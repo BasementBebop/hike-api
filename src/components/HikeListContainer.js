@@ -1,37 +1,52 @@
 import React, { Component } from 'react';
 
 class HikeListContainer extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      trails: ['trail boye']
+      error: null,
+      isLoaded: false,
+      trails: [],
+      filters: [this.props.filters]
     }
   }
 
   componentDidMount() {
-    fetch(`https://www.hikingproject.com/data/get-trails?lat=40.0274&lon=-105.2519&maxDistance=10&key=${process.env.REACT_APP_HIKING_API_KEY}`)
+    fetch(`https://www.hikingproject.com/data/get-trails?lat=45.373690&lon=-121.695936&maxResults=500&maxDistance=30&key=200315624-876d7a6a86b1fc088bfd1d945e271ff2`)
       .then(res => res.json())
       .then(data => {
         this.setState({
+          isLoaded: true,
           trails: data.trails
+        });
+      },
+      error => {
+        this.setState({
+          isLoaded: true,
+          error
         });
       }
     )
   }
 
   render() {
-    return (
-      <div>
-        <h1>All them sweet hikes</h1>
+    const { error, isLoaded, trails } = this.state;
+    if (error) {
+      return <div>Error: {error.message}</div>
+    } else if (!isLoaded) {
+      return <div>Loading...</div>
+    } else {
+      return (
         <ul>
-          {this.state.trails.map(trail => (
+          {trails.map(trail => (
             <li key={trail.id}>
               {trail.name}
+              <img src={trail.imgMedium} alt=""/>
             </li>
           ))}
         </ul>
-      </div>
-    )
+      )
+    }
   }
 }
 
