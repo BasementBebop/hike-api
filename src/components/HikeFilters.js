@@ -2,31 +2,41 @@ import React, { Component } from 'react';
 import { Input, Label, Button } from 'reakit';
 
 class HikeFilters extends Component {
-
-  longitudeInput = React.createRef();
-  latitudeInput = React.createRef();
-  rangeInput = React.createRef();
-
-  applyFilters = e => {
-    e.preventDefault();
-    const filters = {
-      latitude: this.latitudeInput.value.value,
-      longitude: this.longitudeInput.value.value,
-      range: this.rangeInput.value.value
+  constructor(props) {
+    super(props);
+    this.state = {
+      latitude: 45.373690,
+      longitude: -121.695936,
+      range: 50
     }
+  }
+
+  handleChange = (e) => {
+    const target = e.target;
+    const value = parseFloat(target.value);
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    })
+  }
+
+  applyFilters = (e) => {
+    e.preventDefault();
+    console.log(this.state)
   }
 
   render() {
     return(
       <form onSubmit={this.applyFilters}>
         <Label>
-          Latitude <Input name="latitude" ref={this.latitudeInput} type="text" defaultValue="45.373690"/>
+          Latitude <Input name="latitude" value={this.state.latitude} onChange={this.handleChange} type="text" placeholder="45.373690"/>
         </Label>
         <Label>
-          Longitude <Input name="longitude" ref={this.longitudeInput} type="text" defaultValue="-121.695936"/>
+          Longitude <Input name="longitude" value={this.state.longitude} onChange={this.handleChange} type="text" placeholder="-121.695936"/>
         </Label>
         <Label>
-          Range (max: 200 miles) <Input name="range" ref={this.rangeInput} type="text" defaultValue="50"/>
+          Range (max: 200 miles) <Input name="range" value={this.state.range} onChange={this.handleChange} type="text" placeholder="50"/>
         </Label>
         <Button as="button" type="submit">Find Hikes</Button>
       </form>
