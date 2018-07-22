@@ -14,7 +14,19 @@ class App extends Component {
         maxDistance: 30
       }
     }
+
+    this.updateFilters = this.updateFilters.bind(this);
   }
+
+  updateFilters({ latitude, longitude, maxResults, maxDistance }) {
+    this.setState({
+      latitude,
+      longitude,
+      maxResults,
+      maxDistance
+    });
+  }
+
   render() {
     return (
       <div>
@@ -24,7 +36,7 @@ class App extends Component {
         <p className="App-intro">
           Find a sweet spot on Mt Hood
         </p>
-        <HikeFilters />
+        <HikeFilters updateFilters={this.updateFilters}/>
         <h1>All them sweet hikes:</h1>
         <HikeListContainer filters={this.state.filters} />
       </div>

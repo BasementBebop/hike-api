@@ -7,7 +7,8 @@ class HikeFilters extends Component {
     this.state = {
       latitude: 45.373690,
       longitude: -121.695936,
-      range: 50
+      maxResults: 200,
+      maxDistance: 50
     }
   }
 
@@ -36,9 +37,11 @@ class HikeFilters extends Component {
           Longitude <Input name="longitude" value={this.state.longitude} onChange={this.handleChange} type="text" placeholder="-121.695936"/>
         </Label>
         <Label>
-          Range (max: 200 miles) <Input name="range" value={this.state.range} onChange={this.handleChange} type="text" placeholder="50"/>
+          Range (max: 200 miles) <Input name="maxDistance" value={this.state.maxDistance} onChange={this.handleChange} type="text" placeholder="50"/>
         </Label>
-        <Button as="button" type="submit">Find Hikes</Button>
+        <Label>
+          Max Results (max: 500) <Input name="maxResults" value={this.state.maxResults} onChange={this.handleChange} type="text" placeholder="200"/>
+        </Label>
       </form>
     )
   }

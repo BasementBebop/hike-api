@@ -17,6 +17,10 @@ class HikeListContainer extends Component {
     this.loadHikes();
   }
 
+  componentDidUpdate() {
+    this.loadHikes();
+  }
+
   loadHikes() {
     const { latitude, longitude, maxResults, maxDistance } = this.props.filters;
 
