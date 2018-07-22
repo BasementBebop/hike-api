@@ -9,10 +9,18 @@ class HikeListContainer extends Component {
       trails: [],
       filters: [this.props.filters]
     }
+
+    this.loadHikes = this.loadHikes.bind(this);
   }
 
   componentDidMount() {
-    fetch(`https://www.hikingproject.com/data/get-trails?lat=45.373690&lon=-121.695936&maxResults=500&maxDistance=30&key=${process.env.REACT_APP_HIKING_API_KEY}`)
+    this.loadHikes();
+  }
+
+  loadHikes() {
+    const { latitude, longitude, maxResults, maxDistance } = this.props.filters;
+
+    fetch(`https://www.hikingproject.com/data/get-trails?lat=${latitude}&lon=${longitude}&maxResults=${maxResults}&maxDistance=${maxDistance}&key=${process.env.REACT_APP_HIKING_API_KEY}`)
       .then(res => res.json())
       .then(data => {
         this.setState({

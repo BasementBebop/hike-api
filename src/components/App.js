@@ -8,7 +8,10 @@ class App extends Component {
     
     this.state = {
       filters: {
-        
+        latitude: 45.373690,
+        longitude: -121.695936,
+        maxResults: 200,
+        maxDistance: 30
       }
     }
   }
@@ -23,7 +26,7 @@ class App extends Component {
         </p>
         <HikeFilters />
         <h1>All them sweet hikes:</h1>
-        <HikeListContainer />
+        <HikeListContainer filters={this.state.filters} />
       </div>
     );
   }
