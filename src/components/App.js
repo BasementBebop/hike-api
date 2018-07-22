@@ -3,6 +3,15 @@ import HikeListContainer from './HikeListContainer';
 import HikeFilters from './HikeFilters';
 
 class App extends Component {
+  constructor() {
+    super();
+    
+    this.state = {
+      filters: {
+        
+      }
+    }
+  }
   render() {
     return (
       <div>

@@ -12,7 +12,7 @@ class HikeListContainer extends Component {
   }
 
   componentDidMount() {
-    fetch(`https://www.hikingproject.com/data/get-trails?lat=45.373690&lon=-121.695936&maxResults=500&maxDistance=30&key=200315624-876d7a6a86b1fc088bfd1d945e271ff2`)
+    fetch(`https://www.hikingproject.com/data/get-trails?lat=45.373690&lon=-121.695936&maxResults=500&maxDistance=30&key=${process.env.REACT_APP_HIKING_API_KEY}`)
       .then(res => res.json())
       .then(data => {
         this.setState({
